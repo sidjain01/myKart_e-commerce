@@ -1,0 +1,81 @@
+{% extends 'shop/basic.html' %}
+{% block css %}
+<style>
+    #img-no-orders{
+        width: 30%;
+        height: 30%;
+        padding-bottom: 20px;
+    }
+    .order-list li{
+        margin-right: 1rem;
+    }
+    .orderitem-list li{
+        padding-bottom: 1rem;
+    }
+    span{
+        min-width: 20rem;
+        display: inline-block;
+    }
+    .card-body button {
+        color: white;
+        background-color: #FFA726;
+  }
+
+    .card-body button:hover {
+    color: black;
+    background-color: #FFA726;
+  }
+</style>
+{% endblock %}
+{% block title %}<title>Track orders-MyKart</title>{% endblock %}
+{% block body %}
+<div class="container container-manual">
+    <h3>My Orders</h3>
+    <h6>Total - {{orderList|length}} Order(s)</h6>
+    {% if orderExist %}
+    <div class="container" style="padding-top: 1rem;margin-left: 1rem;">
+        {% for orders in orderList %}
+        <div class="row" style="padding-bottom: 1rem;">
+        <div class="card">
+            <div class="card-header">
+              <ul class="nav order-list nav-pills card-header-pills">
+                <li class="nav-item">
+                    <h6>Order Id. {{orders.0.order_id}}</h6>
+                </li>
+                <li class="nav-item">
+                    <h6>Amount - &#8377;{{orders.0.totalamt}}</h6>
+                </li>
+                <li class="nav-item">
+                    <h6>Transaction Mode - {{orders.0.trans_mode}}</h6>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+                <ol class="orderitem-list">
+                    {% for orderItem in orders.1 %}
+                    <li>
+                        <span>
+                            <h6>{{orderItem.product.product_name}}</h6>
+                        </span>
+                        <span>
+                            <h6>&#8377;{{orderItem.product.price}}</h6>
+                        </span>
+                        <span>
+                            <a href="/shop/productview/{{orderItem.product.product_id}}"><button class="btn btn-sm">View Product</button></a>
+                        </span>
+                    </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </div>
+        {% endfor %}
+</div>
+    {% else %}
+        <section class="text-center">
+            <img id="img-no-orders" src="/media/shop/images/noorders.png">
+            <p class="lead">You have no orders to show. Start ordering with us.</p>
+        </section>
+    {% endif %}
+</div>
+{% endblock %}

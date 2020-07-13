@@ -1,0 +1,95 @@
+{% extends 'shop/basic.html' %}
+{% block css %}
+<style>
+body{
+    background-image: url('/static/shop/contactusbg.jpg');
+}
+.contact-form{
+    background: #ffffff;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 70%;
+    border: 5px solid black;
+    border-radius: 2rem;
+}
+
+.contact-form .form-control{
+    border-radius:1rem;
+}
+.center{
+    padding-top: 10px;
+    text-align: center;
+}
+
+
+.contact-form form{
+    padding: 14%;
+}
+.contact-form form .row{
+    margin-bottom: -7%;
+}
+.contact-form h3{
+
+    margin-bottom: 8%;
+    margin-top: -10%;
+    text-align: center;
+    color: #000000;
+}
+.contact-form .btnContact {
+    width: 50%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #f77171;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+.btnContactSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    color: #fff;
+    background-color: #7168B7;
+    border: none;
+    cursor: pointer;
+}
+</style>
+{% endblock %}
+{% block title %}<title>Contact Us</title>{% endblock %}
+{% block body %}
+<div class="container contact-form">
+    <div class="center"> 
+        <div class="logo">  
+            <p style="display: inline;font-size: 45px;padding-top:20px;"><b>MyKart</b></p>
+            <h1 style="display: inline;"><b>&reg;</b></h1>
+        </div>
+    </div>
+    <form method="POST" action="{% url 'shop_contact' %}">
+        {% csrf_token %}
+        <h3>Send us your query</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Your Name *" value="" required />
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="Your Email *" value="" required />
+                </div>
+                <div class="form-group">
+                    <input type="number" name="phone" class="form-control" placeholder="Your Phone Number *" value="" required/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <textarea name="txtMsg" class="form-control" placeholder="Your Message *" required style="width: 100%; height: 150px;"></textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

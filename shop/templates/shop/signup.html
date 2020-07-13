@@ -1,0 +1,70 @@
+{% extends 'shop/basic.html' %}
+{% block css %}
+<style>
+    .signup-form {
+        width: 500px;
+        padding-top: 25px;
+    }
+    .error{
+        color: red;
+    }
+    .signupbtn{
+        color: white;
+        background-color: #f2be3a;
+    }
+    .signupbtn:hover{
+        background-color: #f2be3a;
+    }
+</style>
+{% endblock %}
+{% block title %}<title>Sign Up!</title>{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="text-center">
+        <h2>Welcome to MyKart</h2>
+        <h4>Sign Up!</h4>
+        {% for message in messages%}
+        <h5 class="error">{{message}}</h5>
+        {% endfor %}
+        <div class="container signup-form">
+            <form method="POST" action="{% url 'shop_signup' %}">
+                {% csrf_token %}
+                <label for="first_name">Enter your first name:</label>
+                <br/>
+                <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" required autofocus>
+                <br/>
+                <label for="last_name">Enter your last name:</label>
+                <br/>
+                <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name" required autofocus>
+                <br/>
+                <label for="dob">Enter your Date of birth:</label>
+                <br/>
+                <input type="date" id="dob" name="dob" class="form-control" placeholder="Date of Birth" required autofocus>
+                <br/>
+                <label for="phone">Enter your Mobile number:</label>
+                <br/>
+                <input type="number" id="phone" name="phone" class="form-control" placeholder="Mobile Number" required autofocus>
+                <br/>
+                <label for="email">Enter your email address:</label>
+                <br/>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+                <br/>
+                <label for="username">Enter your username:</label>
+                <br/>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+                <br/>
+                <label for="pwd1">Enter your password:</label>
+                <br/>
+                <input type="password" id="pwd1" name="pwd1" class="form-control" placeholder="Password" required autofocus>
+                <br/>
+                <label for="pwd2">Confirm your password:</label>
+                <br/>
+                <input type="password" id="pwd2" name="pwd2" class="form-control" placeholder="Confirm your password" required>
+                <br/>
+                <button class="btn btn-lg btn-block signupbtn" type="submit">Sign up</button>
+                <p class="mt-5 mb-3 text-muted">MyKart &copy; 2020</p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

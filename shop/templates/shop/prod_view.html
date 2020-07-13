@@ -1,0 +1,46 @@
+{% extends 'shop/basic.html' %}
+{% block css %}
+<style>
+    .cart {
+        color: white;
+        background-color: #f2be3a;
+    }
+
+    .cart:hover {
+        color: black;
+        background-color: #f2be3a;
+    }
+
+    .message {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align: center;
+        background-color: #FFA726;
+        color: black;
+    }
+</style>
+{% endblock %}
+{% block title %}<title>{{product.0.product_name}}-MyKart</title>{% endblock %}
+{% block body %}
+<div class="container my-3">
+    {% for message in messages%}
+    <h5 class="message">{{message}}</h5>
+    {% endfor %}
+    <div class="row">
+        <div class="col-md-4">
+            <img src="/media/{{product.0.images}}" width="350px" height="278px" />
+            <div class="row">
+                <a href="/shop/addandbuy/{{product.0.product_id}}"><button class="btn cart mx-3 my-4">Buy
+                        Now</button></a>
+                <a href="/shop/addtocart/{{product.0.product_id}}"><button class="btn cart mx-1 my-4">Add To
+                        Cart</button></a>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h5>{{product.0.product_name}}</h5>
+            <p><b>Rs. {{product.0.price}}</b></p>
+            <p>{{product.0.product_desc}}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

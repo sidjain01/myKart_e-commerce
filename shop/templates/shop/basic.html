@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    li.nav-item {
+      width: max-content;
+    }
+
+    body {
+      background-image: url('/static/shop/contactusbg.jpg');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+    .container-manual{
+      min-height: 35rem;
+      padding-bottom: 10px;
+    }
+    nav a {
+      color: white;
+    }
+
+    nav a:hover {
+      color: black;
+      text-decoration: none;
+    }
+    .search-bar{
+      margin-left: 0;
+      margin-right: 10px;
+    }
+    .cartbtn {
+      color: black;
+      background-color: white;
+    }
+
+    footer {
+      width: 100%;
+      padding-top: 5px;
+      color: black;
+      background-color: #e8e3e3;
+      text-align: center;
+    }
+
+    footer a {
+      color: black;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: black;
+      text-decoration: underline;
+    }
+
+    .footer-copyright {
+      color: black;
+      background-color: #f2be3a;
+    }
+  </style>
+  {% block css %} {% endblock %}
+  {% block title %}{% endblock %}
+</head>
+
+<body>
+  <!--Navigation Bar-->
+  <nav class="navbar navbar-expand-lg" style="background-color: #f2be3a;">
+    <a class="navbar-brand" href="/shop">MyKart</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" style="background-color: white;"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/shop">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/shop/tracker">My Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/shop/contact">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/shop/about">About Us</a>
+        </li>
+      </ul>
+      <form method="GET" action="{% url 'shop_search' %}">
+        <div class="input-group mb-0">
+          {% if search %}
+          <input type="text" class="form-control search-bar" name="search" size="100%" value="{{search}}">
+          {% else %}
+          <input type="text" class="form-control search-bar" name="search" size="100%" placeholder="Search">
+          {% endif %}
+          <button class="btn" type="submit" style="margin-right: 10px;">Search</button>
+        </div>
+      </form>
+      <a href="/shop/cart"><button type="button" class="btn cartbtn" data-toggle="tooltip"
+          data-html="true" title="Cart">Cart({{cart_total}})</button>
+      </a>
+      <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="">Hello, {{user.first_name}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'shop_logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/shop/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/shop/signup">Signup</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  <br />
+  <!--Navigation Bar End-->
+  {% block body %}{% endblock %}
+  <!-- Footer -->
+  <div>
+    <footer class="font-small">
+      <!-- Footer Links -->
+      <div class="container text-center">
+        <!-- Grid row -->
+        <div class="row">
+          <hr class="clearfix w-100 d-md-none">
+          <!-- Grid column -->
+          <div class="col-md-3 mx-auto">
+            <!-- Links -->
+            <h5 class="font-weight-bold text-uppercase mt-3 mb-4">About</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="/shop/about">About Us</a>
+              </li>
+              <li>
+                <a href="/shop/contact">Contact Us</a>
+              </li>
+              <li>
+                <a href="#">Terms and Conditions</a>
+              </li>
+              <li>
+                <a href="#">Help</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+          <hr class="clearfix w-100 d-md-none">
+          <!-- Grid column -->
+          <div class="col-md-3 mx-auto">
+            <!-- Links -->
+            <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Contact</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#!"><i style="font-size:24px;margin-right: 4px;" class="fa">&#xf0e0;</i>
+                  sidsanjeevjain@gmail.com</a>
+              </li>
+              <li>
+                <a href="#!"><i style="font-size:24px;margin-right: 4px;" class="fa">&#xf098;</i> 8989866293</a>
+              </li>
+              <li>
+                <a href="#!"><i style="font-size:22px;margin-right: 4px;" class="fa">&#xf1c1;</i> Portfolio</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+          <hr class="clearfix w-100 d-md-none">
+          <!-- Grid column -->
+          <div class="col-md-3 mx-auto">
+            <!-- Social buttons -->
+            <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Follow Us</h5>
+            <ul class="list-unstyled">
+              <li>
+                <!-- Facebook -->
+                <a type="button" href="https://www.facebook.com/siddhant.jain.336333" target="_blank"
+                  class="btn-floating btn-fb">
+                  <i style="font-size:24px" class="fa">&#xf09a;</i>
+                </a>
+              </li>
+              <li>
+                <!-- Instagram -->
+                <a type="button" href="https://www.instagram.com/sid__jain7/" target="_blank"
+                  class="btn-floating btn-i">
+                  <i style="font-size:24px;" class="fa">&#xf16d;</i>
+                </a>
+              </li>
+              <li>
+                <!-- Github +-->
+                <a type="button" href="https://github.com/sidjain01" target="_blank" class="btn-floating btn-github">
+                  <i style="font-size:24px" class="fa">&#xf09b;</i>
+                </a>
+              </li>
+              <!-- LinkedIn -->
+              <li>
+                <a type="button" href="https://www.linkedin.com/in/siddhant-jain-33b7a416a/" target="_blank"
+                  class="btn-floating btn-li">
+                  <i style="font-size:24px" class="fa">&#xf08c;</i>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+      <!-- Footer Links -->
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2020 Copyright: Siddhant Jain </div>
+      <!-- Copyright -->
+    </footer>
+  </div>
+  <!-- Footer -->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+  {% block js %}{% endblock %}
+</body>
+
+</html>
+
+
+<!-- <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+<title>Signin Template for Bootstrap</title>
+
+<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+<!-- Bootstrap core CSS -->
+<!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<!-- <link href="signin.css" rel="stylesheet">
+</head> -->

@@ -1,0 +1,27 @@
+{% extends 'shop/basic.html' %}
+{% block css %}
+<style>
+    img{
+        width: 30%;
+        height: 30%;
+        padding-bottom: 5px;
+    }
+</style>
+{% endblock %}
+{% block title %}<title>About Us</title>{% endblock %}
+{% block body %}
+<div class="container container-manual">
+    <section class="text-center">
+        <img src="/media/shop/images/siddhantjain.jpg">
+        <h1 class="jumbotron-heading">Siddhant Jain</h1>
+        <h3 class="jumbotron-heading">Computer Science - Freshman and Full Stack Developer</h3>
+        <h5 class="jumbotron-heading">Institute of Engineering and Technology - DAVV, Indore</h5>
+        <hr class="mb-2"/>
+        <p class="lead">Curious software developer open for full-time oppurtunities to work in the world of software.
+            Contact details are given below.
+        </p>
+        <p class="lead">This Shopping app is made with Django, my first project on this framework.</p>
+        <hr class="mb-2"/>
+    </section>
+</div>
+{% endblock %}
